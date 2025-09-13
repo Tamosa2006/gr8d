@@ -1,0 +1,16 @@
+pip install openai
+import openai
+
+openai.api_key = "your-api-key"
+
+def gpt_analysis(prompt):
+    response = openai.ChatCompletion.create(
+        model="gpt-4",
+        messages=[{"role": "user", "content": prompt}],
+        temperature=0.7
+    )
+    return response['choices'][0]['message']['content']
+combined_input = "\n".join(responses)
+prompt = f"Based on this personality description, which Hogwarts house fits best and why?\n{combined_input}"
+result = gpt_analysis(prompt)
+st.write("🧠 GPT says:", result)
